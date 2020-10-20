@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header-clipping{
+    @apply .relative;
+}
+
+.header-clipping .container{
+    @apply .relative; z-index: 3;
+}
+
+.header-clipping .sunshine{
+    @apply .absolute .top-0;
+    left: 50%;
+    transform: translateX(-50%);
+    width:515px;
+    height:90%;
+    opacity: 0.8;
+    clip-path: polygon(46% 0%, 82% 0%, 67% 100%, 0% 100%);
+    background: transparent linear-gradient(130.09deg,#3d47bd 0%, #2e37a4 50.8%);
+}
+
+.header-clipping::before{
+    @apply .w-full .bg-indigo-900 .inset-0 .absolute;
+    content: "";
+    height: 648px;
+    clip-path: polygon(0 0 , 100% 0, 100% 86%, 0% 100%);
+}

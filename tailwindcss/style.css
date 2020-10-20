@@ -3,6 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.link-wrapped:before{
+    @apply .cursor-pointer .z-10 .inset-0 .absolute;
+    content: "";
+}
+
 .header-clipping{
     @apply .relative;
 }
@@ -27,4 +32,42 @@
     content: "";
     height: 648px;
     clip-path: polygon(0 0 , 100% 0, 100% 86%, 0% 100%);
+}
+
+.item figure.item-image{
+    position: relative;
+    perspective: 10000px;
+}
+
+.item figure.item-image:before{
+    content: "";
+    @apply .absolute inset-0 .bg-indigo-900 .opacity-0 .transition-all .duration-200;
+}
+
+.item:hover figure.item-image:before{
+    @apply .opacity-75;
+}
+
+
+.item figure.item-image svg.icon-play{
+    content: "";
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    top: 60%;
+    left: 50%;
+    transform-origin: bottom;
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%) rotateX(-45deg);
+    @apply .transition-all .duration-300;
+}
+
+.item figure.item-image svg.icon-play circle {
+    @apply fill-orange-500
+}
+
+.item:hover figure.item-image svg.icon-play{
+    opacity: 1; 
+    transform: translateX(-50%) translateY(-50%) rotateX(0deg);
+
 }

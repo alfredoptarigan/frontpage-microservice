@@ -199,3 +199,32 @@
 .card:hover .card-meta h5{
     @apply .text-indigo-400;
 }
+
+svg#svg-star {
+    position:absolute;
+    width:0;
+    height:0;
+    left:-9999px;
+    top:-9999px;
+}
+
+.stars {
+    @apply .relative .inline-flex;
+    min-width: 200px;
+}
+
+.stars .star {
+    @apply .absolute .inline-flex;
+    clip-path: url(#star)
+    /* mask: url(../public/images/icon-star.svg) no-repeat center left; */
+}
+
+.stars .star:not(.placeholder){
+    z-index: 2;
+    @apply .bg-yellow-400
+}
+
+.stars .star.placeholder{
+    z-index: 1;
+    @apply .bg-gray-200
+}

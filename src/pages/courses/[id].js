@@ -1,29 +1,50 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Youtube from "react-youtube";
+import courses from "src/constants/api/courses";
 
-function Todo({ data }) {
+function DetailsCourse({ data }) {
+  console.log(data);
   return (
     <>
       <Head>
-        <title>Micro | Random | {data.title}</title>
+        <title>Microservice Learning</title>
       </Head>
-      <main className="container mt-12 mx-auto">
-        <h1 className="text-3xl">{data.title}</h1>
-        <p>Please complete your task</p>
-        <Link href="/random">Bring me to random page</Link>
-      </main>
+      <section
+        className="pt-10 relative overflow-hidden"
+        style={{ height: 660 }}
+      >
+        {data?.chapter?.[0]?.lessons?.[0]?.video && (
+          <div className="video-wrapper">
+            <Youtube
+              videoId={data?.chapter?.[0]?.lessons?.[0]?.video}
+              id={data?.chapter?.[0]?.lessons?.[0]?.video}
+              opts={{
+                playerVars: {
+                  loop: 1,
+                  mute: 1,
+                  autoplay: 1,
+                  controls: 0,
+                  showinfo: 0,
+                },
+              }}
+              onEnd={(event) => {
+                event.target.playVideo();
+              }}
+            ></Youtube>
+          </div>
+        )}
+      </section>
     </>
   );
 }
 
-Todo.getInitialProps = async (props) => {
+DetailsCourse.getInitialProps = async (props) => {
   const { id } = props.query;
   try {
-    const data = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
-      .then((response) => response.json())
-      .then((json) => json);
+    const data = await courses.details(id);
     return { data };
   } catch (error) {}
 };
-export default Todo;
+export default DetailsCourse;

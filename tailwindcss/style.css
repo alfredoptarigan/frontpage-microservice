@@ -129,7 +129,21 @@
 .item:hover figure.item-image:before{
     @apply .opacity-75;
 }
-
+.accordion-item {
+    @apply .transition-all .duration-300;
+  }
+  .accordion-item-enter {
+    opacity: 0;
+  }
+  .accordion-item-enter-active {
+    opacity: 1;
+  }
+  .accordion-item-exit {
+    opacity: 1;
+  }
+  .accordion-item-exit-active {
+    opacity: 0;
+  }
 
 .item figure.item-image svg{
     content: "";

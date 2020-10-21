@@ -15,9 +15,10 @@ import Feature from "src/parts/Details/Feature";
 import Header from "src/parts/Header";
 import Footer from "src/parts/Footer";
 import CoursePhoto from "src/parts/Details/CoursePhoto";
+import RenderPreview from "src/parts/Details/RenderPreview";
 
 function DetailsCourse({ data }) {
-  // console.log(data);
+  console.log(data);
   const footer = useRef(null);
   const [isSticky, setisSticky] = useState(() => true);
   useEffect(() => {
@@ -162,6 +163,19 @@ function DetailsCourse({ data }) {
                   <div className="w-full text-center py-12">No Item Found</div>
                 )}
               </div>
+            </section>
+            {/* Previews */}
+            <section className="mt-10">
+              <h6 className="font-medium text-gray-900 text-2xl mb-4">
+                You Will <span className="text-teal-500">Learns</span>
+              </h6>
+              {data?.chapter?.length > 0 ? (
+                <RenderPreview previews={data.chapter}></RenderPreview>
+              ) : (
+                <div className="w-full text-center py-12">
+                  No Chapters Found
+                </div>
+              )}
             </section>
           </div>
         </div>

@@ -13,6 +13,32 @@
     @apply .absolute .top-0 .left-0 .w-full .h-full;
 }
 
+.meta-price{
+    @apply .fixed .bottom-0;
+    transition: all ease-in-out .45s;
+    box-shadow: 0px -8px 15px rgba(0, 0, 0, 0.05);
+}
+
+.meta-price-enter{
+    opacity: 0;
+    bottom: -100%;
+}
+.meta-price-enter-active{
+    opacity: 1;
+    bottom: 0;
+}
+.meta-price-exit {
+    opacity: 1;
+    bottom: 0;
+}
+.meta-price-exit-active{
+    opacity: 0;
+    bottom: -100%;
+}
+.meta-price-enter-done{
+    @apply .bottom-0 .opacity-100 .fixed;
+}
+
 .link-wrapped:before{
     @apply .cursor-pointer .z-10 .inset-0 .absolute;
     content: "";

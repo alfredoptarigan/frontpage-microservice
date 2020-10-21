@@ -8,7 +8,7 @@ export default function Feature({ data }) {
         <div className="w-auto">{data.icon}</div>
         <div className="ml-5">
           <span className="text-gray-600 block">{data.meta}</span>
-          <span className="text-gray-900 text-2xl">
+          <span className="text-gray-800 text-2xl">
             {typeof data.value === "number"
               ? formatThousand(data.value)
               : data.value}

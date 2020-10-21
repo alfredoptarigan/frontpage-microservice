@@ -14,19 +14,15 @@ import Certificate from "public/images/icon-certificate.svg";
 import Feature from "src/parts/Details/Feature";
 import Header from "src/parts/Header";
 import Footer from "src/parts/Footer";
+import CoursePhoto from "src/parts/Details/CoursePhoto";
 
 function DetailsCourse({ data }) {
+  // console.log(data);
   const footer = useRef(null);
   const [isSticky, setisSticky] = useState(() => true);
   useEffect(() => {
     const stickyOffsetTop = footer.current.getBoundingClientRect().top;
     const stickyMetaToggler = () => {
-      console.log(
-        stickyOffsetTop,
-        window.pageYOffset,
-        window.innerHeight,
-        stickyOffsetTop >= window.pageYOffset + window.innerHeight
-      );
       setisSticky(stickyOffsetTop >= window.pageYOffset + window.innerHeight);
     };
     window.addEventListener("scroll", stickyMetaToggler);
@@ -153,6 +149,20 @@ function DetailsCourse({ data }) {
                 {data?.description ?? "Description Course"}
               </p>
             </section>
+            <section className="mt-10">
+              <h6 className="font-medium text-gray-900 text-2xl mb-4">
+                Course <span className="text-teal-500">Photos</span>
+              </h6>
+              <div className="flex justify-start items-center -mx-4 mt-6">
+                {data?.image?.length > 0 ? (
+                  data?.image?.map?.((photo, index) => (
+                    <CoursePhoto data={photo.image} key={index} />
+                  ))
+                ) : (
+                  <div className="w-full text-center py-12">No Item Found</div>
+                )}
+              </div>
+            </section>
           </div>
         </div>
       </section>
@@ -168,7 +178,9 @@ DetailsCourse.getInitialProps = async (props) => {
   const { id } = props.query;
   try {
     const data = await courses.details(id);
+
     return { data };
   } catch (error) {}
 };
+
 export default DetailsCourse;
